@@ -1,6 +1,10 @@
+import { useState } from "react";
 import TextInputForm from "./TextInputForm";
 
 function TextInputFormContainer(){
+
+    const [text, setText] = useState('hide')
+    const [textType, setTextType] = useState('text')
 
     const handleTextInputFormSubmission =(e)=>{
         e.preventDefault();
@@ -11,7 +15,29 @@ function TextInputFormContainer(){
         console.log(e.target.value)
     }
 
-    return (<TextInputForm handleFormSubmit={handleTextInputFormSubmission} handleInputBody={showInputBody}/>)
+    const handleDisplay =()=>{
+
+        if(text=='hide'){
+            setText('show')
+            setTextType('password')
+        }else{
+            setText('hide')
+            setTextType('text')
+        }
+        console.log(`button text changed to ${text}`)
+        console.log(`text type changed to ${textType}`)
+
+    }
+
+    return (
+        <TextInputForm 
+            handleFormSubmit={handleTextInputFormSubmission} 
+            handleInputBody={showInputBody}
+            handleButtonText={handleDisplay}
+            buttonText={text}
+            inputType={textType}
+        />
+    )
 }
 
 export default TextInputFormContainer
