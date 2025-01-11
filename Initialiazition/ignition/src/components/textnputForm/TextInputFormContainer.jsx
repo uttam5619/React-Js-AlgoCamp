@@ -6,13 +6,17 @@ function TextInputFormContainer(){
     const [text, setText] = useState('hide')
     const [textType, setTextType] = useState('text')
 
+    const [valueContainer, setValueContainer] = useState('')
+
     const handleTextInputFormSubmission =(e)=>{
         e.preventDefault();
-        console.log(`form submmited`)
+        console.log(`form submmited with data: ${valueContainer}`)
+        
     }
 
     const showInputBody = (e)=>{
         console.log(e.target.value)
+        setValueContainer(e.target.value)
     }
 
     const handleDisplay =()=>{
